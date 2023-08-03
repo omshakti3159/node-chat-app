@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Socket.io Chat Server</title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1><%= name %></h1>
+        <div class="container-fluid">
+            
+            <ul class="list-group" id="messages"></ul>
+            
+        </div>
+        <div style="position: fixed; bottom:0;width:100vw;">
+            <form action="">
+                <input type="hidden" id="username" value="<%= name %>"/>
+                <input type="text" name="" id="msg" class="form-control" placeholder="Enter the message..." value="" required="required" title="" style="background:rgb(34, 20, 48);color:white;">
+            </form>
+        </div>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script defer>
+            var socket = io();
+            var name = $('#username').val();
+            socket.emit("new-join-chat",name)
+            $('form').submit(function(e){
+                e.preventDefault();
+                var msg = $('#msg').val();
+                
+                if(msg.length > 0){
+                    socket.emit('send-message', {message:msg,name});
+                    addMessage({message:msg,name},"right")
+                }
+                else
+                    console.log("Enter a valid msg :)");
+                $('#msg').val("");
+                return false;
+            });
+            socket.on("chat-joined",(name)=>{
+                $("#messages").append('<li class="list-group-item" style="text-align:center">'+name+' joined the chat</li>');
+            })
+            socket.on("chat-left",(name)=>{
+                $("#messages").append('<li class="list-group-item" style="text-align:center">'+name+' has left the chat</li>');
+            })
+            socket.on('recieve', function(data){
+                console.log(data)
+                addMessage(data,"left")
+            });
+
+            function addMessage(data,side="right"){
+                switch(side){
+                    case "left":
+                        $("#messages").append('<li class="list-group-item" style="background-color:grey">'+ data.name+' : '+data.message+'</li>');
+                        break;
+                    case "right":
+                        $("#messages").append('<li class="list-group-item">'+ data.name+' : '+data.message+'</li>');
+                        break;
+                    default:null
+                    }
+            }
+        </script>
+    </body>
+</html>
