@@ -43,7 +43,6 @@ app.get("/chat", (req: Request, res: Response) => {
   }
   try {
     const decoded = <IUser>decodeToken(token);
-    console.log(decoded, typeof decoded);
     res.render("chat", { name: decoded.username });
   } catch (error) {
     return res.status(401).json({ message: "Token is not valid" });

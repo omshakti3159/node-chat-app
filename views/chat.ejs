@@ -5,7 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Socket.io Chat Server</title>
-
+        <style>
+            .sent-message{
+                display: block;
+                text-align: end;
+            }
+            .received-meesage{
+                text-align: start;
+                display: block;
+                background-color: grey !important;
+                color: azure !important;
+            }
+        </style>
         <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     </head>
@@ -31,6 +42,8 @@
             var socket = io();
             var name = $('#username').val();
             socket.emit("new-join-chat",name)
+
+            // send message to every connected user
             $('form').submit(function(e){
                 e.preventDefault();
                 var msg = $('#msg').val();
@@ -44,12 +57,18 @@
                 $('#msg').val("");
                 return false;
             });
+
+             // notify connected users about newly joined user
             socket.on("chat-joined",(name)=>{
                 $("#messages").append('<li class="list-group-item" style="text-align:center">'+name+' joined the chat</li>');
             })
+
+             // notify connected users about user who left the chat
             socket.on("chat-left",(name)=>{
                 $("#messages").append('<li class="list-group-item" style="text-align:center">'+name+' has left the chat</li>');
             })
+
+            // receive message sent by connected user
             socket.on('recieve', function(data){
                 console.log(data)
                 addMessage(data,"left")
@@ -58,10 +77,10 @@
             function addMessage(data,side="right"){
                 switch(side){
                     case "left":
-                        $("#messages").append('<li class="list-group-item" style="background-color:grey">'+ data.name+' : '+data.message+'</li>');
+                        $("#messages").append('<li class="list-group-item received-meesage">'+ data.name+' : '+data.message+'</li>');
                         break;
                     case "right":
-                        $("#messages").append('<li class="list-group-item">'+ data.name+' : '+data.message+'</li>');
+                        $("#messages").append('<li class="list-group-item sent-message">'+ data.name+' : '+data.message+'</li>');
                         break;
                     default:null
                     }
