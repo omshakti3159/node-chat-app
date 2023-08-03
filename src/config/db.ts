@@ -2,7 +2,9 @@
 import { createClient } from "redis";
 import mongoose from "mongoose";
 
-export const redisClient = createClient();
+export const redisClient = createClient({
+  url: "redis://cache:6379",
+});
 
 redisClient.on("error", (err) => console.log("Redis Client Error", err));
 

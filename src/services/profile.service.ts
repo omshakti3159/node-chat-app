@@ -9,7 +9,7 @@ export const getProfiles = async (
 ) => {
   const cacheKey = `resources_${page}_${limit}_${sort}`;
   const cachedData = await getCachedResource(cacheKey);
-  if (cachedData) {
+  if (cachedData && cachedData.length) {
     console.log("Data retrieved from cache");
     return cachedData;
   }
