@@ -31,3 +31,9 @@
 - Get a token by logging in with a user
 - Open browser and go to http://localhost:3000/chat?token=your_login_token_replace_here
 - open a second window and go to same URL but with different user token
+
+## Project structure demonstration
+
+[![Watch the video]](https://www.loom.com/share/104a02f47eae43bd96e09fde92ab6684)
+[![Watch the video]](https://www.loom.com/share/4eca2e556906454d91ca5a97302add28)
+[![Watch the video]](https://www.loom.com/share/7b0404c1d5424589af1a83fea88ece14)
