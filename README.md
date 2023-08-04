@@ -34,7 +34,7 @@
 
 ## Project structure demonstration
 
-[![Watch the video for Project folder structure 1]](https://www.loom.com/share/104a02f47eae43bd96e09fde92ab6684)
-[![Watch the video for app startup and Auth API 2]](https://www.loom.com/share/4eca2e556906454d91ca5a97302add28)
-[![Watch the video for socket.io and chat app 3]](https://www.loom.com/share/7b0404c1d5424589af1a83fea88ece14)
-[![Watch the video for how to use API and chat app]](https://www.loom.com/share/ac2a8395d8f14741a4dbd63602587683)
+- [![Watch the video for Project folder structure 1]](https://www.loom.com/share/104a02f47eae43bd96e09fde92ab6684)
+- [![Watch the video for app startup and Auth API 2]](https://www.loom.com/share/4eca2e556906454d91ca5a97302add28)
+- [![Watch the video for socket.io and chat app 3]](https://www.loom.com/share/7b0404c1d5424589af1a83fea88ece14)
+- [![Watch the video for how to use API and chat app]](https://www.loom.com/share/ac2a8395d8f14741a4dbd63602587683)
