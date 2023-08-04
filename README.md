@@ -1,4 +1,4 @@
-## prerequisite
+## Pre-requisite
 
 - Docker
 
