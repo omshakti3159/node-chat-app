@@ -4,7 +4,7 @@
 DATA_FILE="./src/static/users.json"
 
 # Set the container name or ID of your MongoDB container
-CONTAINER_NAME="task-rest-api-mongo-1"
+CONTAINER_NAME="mongo-container"
 
 # Set the name of the MongoDB database and collection where you want to import the data
 DATABASE_NAME="db"
